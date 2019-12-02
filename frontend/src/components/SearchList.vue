@@ -31,7 +31,7 @@
       id="home-section">
 
       <div class="container">
-        <div class="row align-items-center justify-content-center" style="padding: 0">
+        <div class="row align-items-center justify-content-center" style="padding-top: 0;">
           <div class="col-md-12">
             <div class="mb-5 text-center">
               <h1 class="text-white font-weight-bold">Job Listings</h1>
@@ -81,7 +81,7 @@
   <br/><br/>
 
     <section class="site-section" style="padding: 0">
-      <div class="container">
+      <div class="container" style="padding-bottom: 30px;">
         <div class="mb-1">
           <div v-for="job in jobs" v-bind:key="job.id" class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
             <div class="col-md-7">
@@ -162,11 +162,18 @@ export default {
       }
     },
     searchJob() {
-      window.location = `/search?description=${this.description}&address=${this.address}&salary=${this.salary}`
+      if (!this.description) {
+        return
+      }
+      let redirectUrl = `/search?description=${this.description}`
+      if (this.address) {
+        redirectUrl = `${redirectUrl}&address=${this.address}`
+      }
+      if (this.salary) {
+        redirectUrl = `${redirectUrl}&salary=${this.salary}`
+      }
+      window.location = redirectUrl
     },
-    // changePage(page) {
-    //   return `${this.baseUrl}&page=${page}`
-    // }
     changePage(page) {
       window.location = `${this.baseUrl}&page=${page}`
     }

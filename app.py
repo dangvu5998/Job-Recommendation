@@ -81,8 +81,6 @@ def get_one_job(job_id):
     job = jobs_df[jobs_df['id'] == job_id]
     if len(job) == 0:
         return abort(404)
-    print(job.iloc[0][SERIALIZE_PROPERTIES].to_dict())
-    print('hello')
     result = job.iloc[0][SERIALIZE_PROPERTIES].to_dict()
     for key in result:
         try:

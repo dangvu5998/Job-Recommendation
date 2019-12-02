@@ -2,6 +2,7 @@ import page from 'page'
 import Vue from 'vue'
 import Home from './components/Home.vue'
 import SearchList from './components/SearchList.vue'
+import JobDetails from './components/JobDetails.vue'
 
 Vue.config.productionTip = false
 
@@ -17,4 +18,5 @@ const app = new Vue({
 
 page('/', () => app.ViewComponent = Home)
 page('/search', () => app.ViewComponent = SearchList)
+page('/jobs/:jobid', () => app.ViewComponent = JobDetails)
 page()

@@ -84,7 +84,17 @@ export default {
   }),
   methods: {
     searchJob() {
-      window.location = `/search?description=${this.description}&address=${this.address}&salary=${this.salary}`
+      if (!this.description) {
+        return
+      }
+      let redirectUrl = `/search?description=${this.description}`
+      if (this.address) {
+        redirectUrl = `${redirectUrl}&address=${this.address}`
+      }
+      if (this.salary) {
+        redirectUrl = `${redirectUrl}&salary=${this.salary}`
+      }
+      window.location = redirectUrl
     }
   }
 }
